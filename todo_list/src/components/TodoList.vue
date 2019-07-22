@@ -1,19 +1,6 @@
 <template>
   <div class="card">
-    <div>
-      <table>
-        <tr>
-          <td><h1>{{learning }} To Do List</h1></td>
-        </tr>
-        <tr>
-          <td><span id="desc">Simple Todo List with adding and filter by diff status.</span></td>
-        </tr>
-        <tr>
-          <td><span><input type="text" v-model="newItem"/><button class="addButton"
-                                                                  @click="addTodoList">Add</button></span></td>
-        </tr>
-      </table>
-    </div>
+    <todo-heading @addItem="addItem($event)"></todo-heading>
     <div>
       <ol>
         <li v-for="n in currList">
@@ -38,6 +25,7 @@
 </template>
 
 <script>
+  import TodoHeading from '../components/TodoHeading'
   var allList= [{
     name: '123',
     status: 1
@@ -53,6 +41,7 @@
   },];
   export default {
     name: "TodoList",
+    components:{TodoHeading,},
     data() {
       return {
         newItem: '',
@@ -72,24 +61,18 @@
       showComplete() {
         this.currList = allList.filter(l => l.status == 1);
       },
-      addTodoList() {
-        if (this.newItem == '') {
-          alert('please input todo item.');
-          return;
-        }
-        let item = {name: this.newItem, status: 0};
-        allList.push(item);
-        this.newItem = '';
-      },
       selectClass(val) {
-        if (val == 1) {
+        if (val) {
           return 'itemCheck';
         }
+      },
+      addItem(item){
+        allList.push(item);
       },
       edit() {
         this.editing = true;
         this.$nextTick(function () {
-          this.$els.input.focus()
+          this.$els.input.focus();
         });
       }
     }
@@ -123,11 +106,6 @@
     margin: 10px;
   }
 
-  input {
-    height: 25px;
-    width: 80%;
-  }
-
   .checkbox {
     width: 16px;
     height: 16px;
@@ -137,22 +115,6 @@
     width: 16px;
     height: 16px;
     text-decoration: line-through;
-  }
-
-  #desc, h1 {
-    float: left;
-    margin: 10px;
-  }
-
-  .addButton {
-    background-color: skyblue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: medium;
-    width: 60px;
-    height: 30px;
-    margin-left: 10px;
   }
 
   li:nth-child(even) {
