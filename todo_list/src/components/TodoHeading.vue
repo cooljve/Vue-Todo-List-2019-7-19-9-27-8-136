@@ -31,7 +31,7 @@
           }
           let item = {name: this.newItem, status: 0};
           this.newItem = '';
-          this.$emit('addItem',item);
+          this.$store.commit('addItem',item);
         },
       }
     }

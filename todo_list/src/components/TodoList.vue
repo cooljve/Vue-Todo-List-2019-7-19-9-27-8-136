@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <todo-heading @addItem="addItem($event)"></todo-heading>
+    <todo-heading></todo-heading>
     <div>
       <ol>
         <li v-for="n in currList">
@@ -32,31 +32,15 @@
         newItem: '',
         learning: 'Vue.js',
         editing: false,
-        allList: [{
-          name: '123',
-          status: 1
-        }, {
-          name: '456',
-          status: 1
-        }, {
-          name: '789',
-          status: 0
-        }, {
-          name: 'abc',
-          status: 1
-        },],
         todoButton:{filters(items){}},
       }
     },
     computed: {
       currList() {
-        return this.todoButton.filters(this.allList);
+        return this.todoButton.filters(this.$store.state.allList);
       }
     },
     methods: {
-      addItem(item) {
-        this.allList.push(item);
-      },
       edit() {
         this.editing = true;
         this.$nextTick(function () {
