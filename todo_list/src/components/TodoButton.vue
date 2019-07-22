@@ -1,6 +1,7 @@
 <template>
   <div class="btn-layout">
-    <button class="button" v-for=" n in buttonGroup" @click="selectButton(n.type)">{{n.type}}</button>
+    <button class="button" v-for=" button in $store.state.buttonGroup"
+            @click="selectButton(button.type)">{{button.type}}</button>
   </div>
 </template>
 
@@ -10,22 +11,6 @@
     data(){
       return{
         buttonIndex: 0,
-        buttonGroup: [{
-          type: 'All',
-          filters(items) {
-            return items;
-          }
-        }, {
-          type: 'Active',
-          filters(items) {
-            return items.filter(item => item.status == 0);
-          }
-        }, {
-          type: 'Complete',
-          filters(items) {
-            return items.filter(item => item.status == 1);
-          }
-        }],
       }
     },
     methods:{
@@ -37,7 +22,7 @@
         } else {
           this.buttonIndex = 2;
         }
-        this.$emit('clickButton', this.buttonGroup[this.buttonIndex]);
+        this.$store.commit('changeButton',this.buttonIndex);
       },
     }
   }

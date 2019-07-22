@@ -9,12 +9,37 @@ Vue.use(Vuex);
 Vue.config.productionTip = false
 
 const store = new Vuex.Store({
-  state:{
+  state: {
     allList: [],
+    currIndex: 0,
+    buttonGroup: [{
+      type: 'All',
+      filters(items) {
+        return items;
+      }
+    }, {
+      type: 'Active',
+      filters(items) {
+        return items.filter(item => item.status === 0);
+      }
+    }, {
+      type: 'Complete',
+      filters(items) {
+        return items.filter(item => item.status === 1);
+      }
+    }],
   },
-  mutations:{
-    addItem(state,item){
+  getters:{
+    list:state=>{
+      return state.buttonGroup[state.currIndex].filters(state.allList);
+    }
+  },
+  mutations: {
+    addItem(state, item) {
       state.allList.push(item);
+    },
+    changeButton(state, index) {
+      state.currIndex = index;
     },
   }
 });
@@ -23,6 +48,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {App},
   template: '<App/>'
-})
+});

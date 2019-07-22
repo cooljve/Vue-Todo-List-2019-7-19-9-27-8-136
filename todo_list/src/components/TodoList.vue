@@ -3,20 +3,20 @@
     <todo-heading></todo-heading>
     <div>
       <ol>
-        <li v-for="n in currList">
+        <li v-for="item in currList">
           <table>
             <tr>
-              <td><input class="checkbox" type="checkbox" v-model="n.status"/></td>
+              <td><input class="checkbox" type="checkbox" v-model="item.status"/></td>
               <td>
-                <span v-if="!editing" @dblclick="edit" :class={itemCheck:n.status}>{{n.name}}</span>
-                <input v-else type="text" v-model="n.name" @blur="editing=false">
+                <span v-if="!editing" @dblclick="edit" :class={itemCheck:item.status}>{{item.name}}</span>
+                <input v-else type="text" v-model="item.name" @blur="editing=false">
               </td>
             </tr>
           </table>
         </li>
       </ol>
     </div>
-    <todo-button @clickButton="clickButton($event)"></todo-button>
+    <todo-button></todo-button>
   </div>
 </template>
 
@@ -32,12 +32,11 @@
         newItem: '',
         learning: 'Vue.js',
         editing: false,
-        todoButton:{filters(items){}},
       }
     },
     computed: {
       currList() {
-        return this.todoButton.filters(this.$store.state.allList);
+        return this.$store.getters.list;
       }
     },
     methods: {
@@ -47,9 +46,6 @@
           this.$els.input.focus();
         });
       },
-      clickButton(button) {
-        this.todoButton = button;
-      }
     }
   }
 </script>
