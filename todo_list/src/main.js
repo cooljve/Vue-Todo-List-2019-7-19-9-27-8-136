@@ -20,12 +20,12 @@ const store = new Vuex.Store({
     }, {
       type: 'Active',
       filters(items) {
-        return items.filter(item => item.status === 0);
+        return items.filter(item => item.status == 0);
       }
     }, {
       type: 'Complete',
       filters(items) {
-        return items.filter(item => item.status === 1);
+        return items.filter(item => item.status == 1);
       }
     }],
   },
