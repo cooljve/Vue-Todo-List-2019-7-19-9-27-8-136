@@ -6,7 +6,7 @@
         </td>
         <td>
           <span v-if="!editing" @dblclick="editing=true" :class={itemCheck:item.completed}>{{item.content}}</span>
-          <input v-else type="text" v-model="item.content" @blur="edit(item)">
+          <input autofocus class="edit" v-else type="text" v-model="item.content" @blur="edit(item)">
         </td>
       </tr>
     </table>
@@ -48,5 +48,9 @@
     width: 16px;
     height: 16px;
     text-decoration: line-through;
+  }
+  .edit{
+    border-radius: 5px;
+    height: 100%;
   }
 </style>
