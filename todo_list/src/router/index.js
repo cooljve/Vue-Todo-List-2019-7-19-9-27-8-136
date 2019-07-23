@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import TodoList from '../components/TodoList'
 import Main from '../components/Main'
 import Home from '../components/Home'
+import Profile from '../components/Profile'
 
 Vue.use(Router);
 
@@ -16,14 +17,17 @@ export default new Router({
     {
       path: '/home',
       redirect: '/home/todos',
+      name: 'home',
       component: Home,
       children: [
         {
           path: 'todos',
+          name: 'todos',
           component: TodoList
         }, {
           path: 'profile',
-          component: TodoList
+          name: 'profile',
+          component: Profile
         }
       ]
     }

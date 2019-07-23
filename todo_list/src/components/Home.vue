@@ -32,7 +32,10 @@
         }
       },
       showTodoList() {
-        this.$router.push('/home/todos');
+        this.$router.push('todos');
+      },
+      showProfile() {
+        this.$router.push('profile');
       }
     }
   }
