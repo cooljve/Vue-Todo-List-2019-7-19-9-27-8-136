@@ -42,7 +42,7 @@
   .card {
     width: 500px;
     margin: auto;
-    box-shadow: 0 0 10px #34313fa3;
+    /*box-shadow: 0 0 10px #34313fa3;*/
     border-radius: 5px;
     padding: 10px;
   }
