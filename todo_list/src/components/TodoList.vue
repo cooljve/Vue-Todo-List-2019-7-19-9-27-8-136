@@ -4,16 +4,7 @@
     <div>
       <ol>
         <li v-for="item in currList">
-          <table>
-            <tr>
-              <td><input class="checkbox" type="checkbox" :checked="item.completed" @input="changeCompleted(item)"/>
-              </td>
-              <td>
-                <span v-if="!editing" @dblclick="edit" :class={itemCheck:item.completed}>{{item.content}}</span>
-                <input v-else type="text" v-model="item.content" @blur="editing=false">
-              </td>
-            </tr>
-          </table>
+          <todo-item :item="item"></todo-item>
         </li>
       </ol>
     </div>
@@ -24,10 +15,11 @@
 <script>
   import TodoHeading from '../components/TodoHeading'
   import TodoButton from '../components/TodoButton'
+  import TodoItem from '../components/TodoItem'
 
   export default {
     name: "TodoList",
-    components: {TodoHeading, TodoButton},
+    components: {TodoHeading, TodoButton, TodoItem},
     data() {
       return {
         newItem: '',
@@ -43,18 +35,6 @@
         return this.$store.getters.list;
       }
     },
-    methods: {
-      edit() {
-        this.editing = true;
-        this.$nextTick(function () {
-          this.$els.input.focus();
-        });
-      },
-      changeCompleted(item) {
-        item.completed = !item.completed;
-        this.$store.dispatch('updateTodo', item);
-      }
-    }
   }
 </script>
 
@@ -69,17 +49,6 @@
 
   div {
     margin: 10px;
-  }
-
-  .checkbox {
-    width: 16px;
-    height: 16px;
-  }
-
-  .itemCheck {
-    width: 16px;
-    height: 16px;
-    text-decoration: line-through;
   }
 
   li:nth-child(even) {
