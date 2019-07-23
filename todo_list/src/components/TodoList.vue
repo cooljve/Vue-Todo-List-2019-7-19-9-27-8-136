@@ -6,10 +6,11 @@
         <li v-for="item in currList">
           <table>
             <tr>
-              <td><input class="checkbox" type="checkbox" v-model="item.status"/></td>
+              <td><input class="checkbox" type="checkbox" :checked="item.completed" @input="changeCompleted(item)"/>
+              </td>
               <td>
-                <span v-if="!editing" @dblclick="edit" :class={itemCheck:item.status}>{{item.name}}</span>
-                <input v-else type="text" v-model="item.name" @blur="editing=false">
+                <span v-if="!editing" @dblclick="edit" :class={itemCheck:item.completed}>{{item.content}}</span>
+                <input v-else type="text" v-model="item.content" @blur="editing=false">
               </td>
             </tr>
           </table>
@@ -34,6 +35,9 @@
         editing: false,
       }
     },
+    mounted() {
+      this.$store.dispatch('getTodos');
+    },
     computed: {
       currList() {
         return this.$store.getters.list;
@@ -46,6 +50,10 @@
           this.$els.input.focus();
         });
       },
+      changeCompleted(item) {
+        item.completed = !item.completed;
+        this.$store.dispatch('updateTodo', item);
+      }
     }
   }
 </script>

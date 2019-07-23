@@ -16,25 +16,26 @@
 </template>
 
 <script>
-    export default {
-        name: "TodoHeading",
-      data(){
-          return{
-            newItem:''
-          }
-      },
-      methods:{
-        addTodoList() {
-          if (this.newItem == '') {
-            alert('please input todo item.');
-            return;
-          }
-          let item = {name: this.newItem, status: 0};
-          this.newItem = '';
-          this.$store.commit('addItem',item);
-        },
+  export default {
+    name: "TodoHeading",
+    data() {
+      return {
+        newItem: ''
       }
+    },
+    methods: {
+      addTodoList() {
+        if (this.newItem == '') {
+          alert('please input todo item.');
+          return;
+        }
+        let id = this.$store.state.allList.length + 1;
+        let item = {id: id, content: this.newItem, completed: false};
+        this.newItem = '';
+        this.$store.dispatch('addTodo', item);
+      },
     }
+  }
 </script>
 
 <style scoped>
@@ -48,10 +49,12 @@
     height: 30px;
     margin-left: 10px;
   }
+
   #desc, h1 {
     float: left;
     margin: 10px;
   }
+
   input {
     height: 25px;
     width: 80%;
