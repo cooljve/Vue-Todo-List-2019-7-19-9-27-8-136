@@ -25,6 +25,13 @@ const actions = {
         dispatch('getTodos');
       }).catch(err => {
     });
+  },
+  deleteTodo({dispatch, commit}, item) {
+    axios.delete(`${baseUrl}/todos/${item.id}`)
+      .then(res => {
+        dispatch('getTodos');
+      }).catch(err => {
+    });
   }
 };
 export default actions;

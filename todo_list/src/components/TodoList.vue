@@ -3,7 +3,7 @@
     <todo-heading></todo-heading>
     <div>
       <ol>
-        <li v-for="item in currList">
+        <li style="width: 95%" v-for="item in currList">
           <todo-item :item="item"></todo-item>
         </li>
       </ol>

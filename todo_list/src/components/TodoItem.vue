@@ -2,11 +2,14 @@
   <div>
     <table>
       <tr>
-        <td><input class="checkbox" type="checkbox" :checked="item.completed" @input="changeCompleted(item)"/>
+        <td style="width: 5%"><input class="checkbox" type="checkbox" :checked="item.completed" @input="changeCompleted(item)"/>
         </td>
-        <td>
+        <td style="width: 25%">
           <span v-if="!editing" @dblclick="editing=true" :class={itemCheck:item.completed}>{{item.content}}</span>
           <input autofocus class="edit" v-else type="text" v-model="item.content" @blur="edit(item)">
+        </td>
+        <td style="float: right">
+          <button @click="deleteItem(item)" class="deleteButton">X</button>
         </td>
       </tr>
     </table>
@@ -26,13 +29,16 @@
     },
     methods: {
       edit(item) {
-        console.log('editItem:',item);
+        console.log('editItem:', item);
         this.$store.dispatch('updateTodo', item);
         this.editing = false;
       },
       changeCompleted(item) {
         item.completed = !item.completed;
         this.$store.dispatch('updateTodo', item);
+      },
+      deleteItem(item) {
+        this.$store.dispatch('deleteTodo', item);
       }
     }
   }
@@ -49,8 +55,16 @@
     height: 16px;
     text-decoration: line-through;
   }
-  .edit{
+
+  .edit {
     border-radius: 5px;
     height: 100%;
+  }
+
+  .deleteButton {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: medium;
   }
 </style>
