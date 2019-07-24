@@ -1,8 +1,15 @@
 <template>
-  <div style="margin: auto">
-    <p>头像：</p>
-    <p>姓名：{{name}}</p>
-    <p>电话：{{phoneNumber}}</p>
+  <div>
+    <a-card
+      hoverable
+      style="width: 50%;margin: 20px auto;font-size: large;"
+    >
+      <a-card-meta
+        :title=name
+        :description=phoneNumber>
+        <a-avatar slot="avatar" src="../assets/logo.png"/>
+      </a-card-meta>
+    </a-card>
   </div>
 </template>
 

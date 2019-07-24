@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <table>
-      <tr>
-        <td style="width: 5%">
-          <a-checkbox :checked="item.completed" @change="changeCompleted(item)"></a-checkbox>
-        </td>
-        <td style="width: 25%">
-          <span v-if="!editing" @dblclick="editing=true" :class={itemCheck:item.completed}>{{item.content}}</span>
-          <input autofocus class="edit" v-else type="text" v-model="item.content" @blur="edit(item)">
-        </td>
-        <td style="float: right">
-          <a-button ghost type="danger" @click="deleteItem(item)">delete</a-button>
-        </td>
-      </tr>
-    </table>
+  <div style="width: 100%;">
+    <a-row style="font-size: 20px" type="flex" justify="end">
+      <a-col :span="1">
+        <a-checkbox :checked="item.completed" @change="changeCompleted(item)"></a-checkbox>
+      </a-col>
+      <a-col :span="4">
+        <span v-if="!editing" @dblclick="editing=true" :class={itemCheck:item.completed}>{{item.content}}</span>
+        <input autofocus class="edit" v-else type="text" v-model="item.content" @blur="edit(item)">
+      </a-col>
+      <a-col :span="19">
+        <a-button style="float: right" type="danger" size="large" @click="deleteItem(item)">delete</a-button>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -45,11 +43,6 @@
 </script>
 
 <style scoped>
-  .checkbox {
-    width: 16px;
-    height: 16px;
-  }
-
   .itemCheck {
     width: 16px;
     height: 16px;
@@ -61,10 +54,4 @@
     height: 100%;
   }
 
-  .deleteButton {
-    background-color: transparent;
-    border: none;
-    color: black;
-    font-size: medium;
-  }
 </style>

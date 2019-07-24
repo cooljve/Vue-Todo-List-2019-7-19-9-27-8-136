@@ -2,8 +2,8 @@
   <div id="container">
     <a-layout>
       <a-layout-header>
-        <a-button type="primary" ghost icon="arrow-left" @click="back" style="float: left;margin-top: 10px;">返回</a-button>
-        <span style="float: right;font-size: 22px">{{username}}</span></a-layout-header>
+        <a-button type="primary" ghost icon="arrow-left" @click="back" style="float: left;margin-top: 10px;border: none">back</a-button>
+        <span style="float: right;font-size: 22px;color: white">Welcome {{$route.params.username}}</span></a-layout-header>
       <a-layout>
         <a-layout-sider>
           <a-menu
@@ -25,6 +25,7 @@
           <router-view/>
         </a-layout-content>
       </a-layout>
+      <a-layout-footer style="background-color: #001529"></a-layout-footer>
     </a-layout>
   </div>
 </template>

@@ -1,13 +1,15 @@
 <template>
   <div style="width: 50%;margin: auto;">
     <todo-heading></todo-heading>
-    <div>
-      <ol>
-        <li style="width: 95%" v-for="item in currList">
-          <todo-item :item="item"></todo-item>
-        </li>
-      </ol>
-    </div>
+    <a-list
+      bordered
+      :dataSource="currList"
+      :pagination="pagination"
+    >
+      <a-list-item slot="renderItem" slot-scope="item, index">
+        <todo-item :item="item"></todo-item>
+      </a-list-item>
+    </a-list>
     <todo-button></todo-button>
   </div>
 </template>
@@ -25,6 +27,9 @@
         newItem: '',
         learning: 'Vue.js',
         editing: false,
+        pagination: {
+          pageSize: 5,
+        },
       }
     },
     mounted() {
