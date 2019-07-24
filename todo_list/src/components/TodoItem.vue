@@ -29,7 +29,6 @@
     },
     methods: {
       edit(item) {
-        console.log('editItem:', item);
         this.$store.dispatch('updateTodo', item);
         this.editing = false;
       },

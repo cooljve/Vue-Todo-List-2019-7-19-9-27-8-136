@@ -25,7 +25,6 @@
       }
     },
     beforeRouteLeave(to, from, next) {
-      console.log(to);
       if (to.path == '/') {
         confirm("确认离开？") && next();
       }

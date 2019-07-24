@@ -29,7 +29,7 @@
           alert('please input todo item.');
           return;
         }
-        let id = this.$store.state.allList.length + 1;
+        let id = this.$store.state.todos.allList.length + 1;
         let item = {id: id, content: this.newItem, completed: false};
         this.newItem = '';
         this.$store.dispatch('addTodo', item);

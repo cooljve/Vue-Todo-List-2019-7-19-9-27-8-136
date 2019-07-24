@@ -1,6 +1,6 @@
 <template>
   <div class="btn-layout">
-    <button class="button" v-for=" button in $store.state.buttonGroup"
+    <button class="button" v-for=" button in $store.state.todos.buttonGroup"
             @click="selectButton(button.type)">{{button.type}}</button>
   </div>
 </template>
