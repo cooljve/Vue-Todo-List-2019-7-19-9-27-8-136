@@ -2,14 +2,15 @@
   <div>
     <table>
       <tr>
-        <td style="width: 5%"><input class="checkbox" type="checkbox" :checked="item.completed" @input="changeCompleted(item)"/>
+        <td style="width: 5%">
+          <a-checkbox :checked="item.completed" @change="changeCompleted(item)"></a-checkbox>
         </td>
         <td style="width: 25%">
           <span v-if="!editing" @dblclick="editing=true" :class={itemCheck:item.completed}>{{item.content}}</span>
           <input autofocus class="edit" v-else type="text" v-model="item.content" @blur="edit(item)">
         </td>
         <td style="float: right">
-          <button @click="deleteItem(item)" class="deleteButton">X</button>
+          <a-button ghost type="danger" @click="deleteItem(item)">delete</a-button>
         </td>
       </tr>
     </table>

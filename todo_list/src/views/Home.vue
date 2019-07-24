@@ -1,18 +1,31 @@
 <template>
   <div id="container">
-    <div id="header">
-      <button id="backBtn" @click="back">返回</button>
-      <span style="float: right;font-size: 22px">{{username}}</span>
-    </div>
-    <div id="menu">
-      <button @click="showTodoList">Todo list列表</button>
-      <br>
-      <button @click="showProfile">我的</button>
-      <br>
-    </div>
-    <div id="content">
-      <router-view/>
-    </div>
+    <a-layout>
+      <a-layout-header>
+        <a-button type="primary" ghost icon="arrow-left" @click="back" style="float: left;margin-top: 10px;">返回</a-button>
+        <span style="float: right;font-size: 22px">{{username}}</span></a-layout-header>
+      <a-layout>
+        <a-layout-sider>
+          <a-menu
+            :defaultSelectedKeys="['1']"
+            mode="inline"
+            theme="dark"
+          >
+            <a-menu-item @click="showTodoList" key="1">
+              <a-icon type="ordered-list"/>
+              <span>Todo Lists</span>
+            </a-menu-item>
+            <a-menu-item @click="showProfile" key="2">
+              <a-icon type="user"/>
+              <span>MyProfile</span>
+            </a-menu-item>
+          </a-menu>
+        </a-layout-sider>
+        <a-layout-content>
+          <router-view/>
+        </a-layout-content>
+      </a-layout>
+    </a-layout>
   </div>
 </template>
 
@@ -44,45 +57,5 @@
 </script>
 
 <style scoped>
-  #container {
-    width: 700px;
-    margin: auto;
-  }
-
-  #header {
-    background-color: yellow;
-    height: 100%;
-  }
-
-  #menu {
-    float: left;
-    clear: left;
-    width: 30%;
-    background-color: antiquewhite;
-  }
-
-  #content {
-    float: left;
-    width: 70%;
-    background-color: #3365b1d4;
-  }
-
-  #backBtn {
-    border: none;
-    border-radius: 5px;
-    font-size: large;
-    margin: 0px;
-    float: left;
-  }
-
-  button {
-    background-color: transparent;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    margin: 10px 10px;
-    color: skyblue;
-    font-size: medium;
-  }
 
 </style>

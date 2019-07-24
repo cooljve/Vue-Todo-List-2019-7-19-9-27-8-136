@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div style="width: 50%;margin: auto;">
     <todo-heading></todo-heading>
     <div>
       <ol>
@@ -35,23 +35,21 @@
         return this.$store.getters.list;
       }
     },
+    methods: {
+      deleteItem(item) {
+        this.$store.dispatch('deleteTodo', item);
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .card {
-    width: 500px;
-    margin: auto;
-    /*box-shadow: 0 0 10px #34313fa3;*/
-    border-radius: 5px;
-    padding: 10px;
-  }
 
   div {
     margin: 10px;
   }
 
   li:nth-child(even) {
-    background-color: #dcf5ff;
+    background-color: #3170a7;
   }
 </style>

@@ -1,17 +1,8 @@
 <template>
-  <div>
-    <table>
-      <tr>
-        <td><h1>Vue.js To Do List</h1></td>
-      </tr>
-      <tr>
-        <td><span id="desc">Simple Todo List with adding and filter by diff status.</span></td>
-      </tr>
-      <tr>
-        <td><span><input type="text" v-model="newItem"/><button class="addButton"
-                                                                @click="addTodoList">Add</button></span></td>
-      </tr>
-    </table>
+  <div style="width:400px;margin: auto">
+    <a-row><h1>Vue.js To Do List</h1></a-row>
+    <a-row>Simple Todo List with adding and filter by diff status.</a-row>
+    <a-row><a-input-search placeholder="new item" v-model="newItem" @search="addTodoList" enterButton="Add"/></a-row>
   </div>
 </template>
 
@@ -39,24 +30,4 @@
 </script>
 
 <style scoped>
-  .addButton {
-    background-color: skyblue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: medium;
-    width: 60px;
-    height: 30px;
-    margin-left: 10px;
-  }
-
-  #desc, h1 {
-    float: left;
-    margin: 10px;
-  }
-
-  input {
-    height: 25px;
-    width: 80%;
-  }
 </style>
