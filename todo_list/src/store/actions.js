@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {LOAD_TODO} from "./mutation-types";
 
 const baseUrl = 'http://localhost:3001';
 
@@ -6,7 +7,7 @@ const actions = {
   getTodos({commit}) {
     axios.get(`${baseUrl}/todos`)
       .then(res => {
-        commit('loadTodo', res.data);
+        commit(LOAD_TODO, res.data);
       }).catch(err => {
       console.log(err);
     });

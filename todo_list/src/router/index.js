@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TodoList from '../components/TodoList'
-import Main from '../components/Main'
-import Home from '../components/Home'
+import Main from '../views/Main'
+import Home from '../views/Home'
 import Profile from '../components/Profile'
 
 Vue.use(Router);

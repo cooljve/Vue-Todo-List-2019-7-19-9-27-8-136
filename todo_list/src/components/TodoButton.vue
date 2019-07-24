@@ -6,6 +6,8 @@
 </template>
 
 <script>
+  import {CHANGE_BUTTON} from "../store/mutation-types";
+
   export default {
     name: "TodoButton",
     data(){
@@ -22,7 +24,7 @@
         } else {
           this.buttonIndex = 2;
         }
-        this.$store.commit('changeButton',this.buttonIndex);
+        this.$store.commit(CHANGE_BUTTON,this.buttonIndex);
       },
     }
   }

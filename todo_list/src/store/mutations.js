@@ -1,8 +1,10 @@
+import {CHANGE_BUTTON, LOAD_TODO} from "./mutation-types";
+
 const mutations = {
-  changeButton(state, index) {
+  [CHANGE_BUTTON](state, index) {
     state.currIndex = index;
   },
-  loadTodo(state, todos) {
+  [LOAD_TODO](state, todos) {
     state.allList = todos;
   },
 };
