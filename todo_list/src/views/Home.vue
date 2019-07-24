@@ -24,12 +24,15 @@
         username: 'Joi'
       }
     },
+    beforeRouteLeave(to, from, next) {
+      console.log(to);
+      if (to.path == '/') {
+        confirm("确认离开？") && next();
+      }
+    },
     methods: {
       back() {
-        let flag = confirm("确认返回上一页？");
-        if (flag == true) {
-          this.$router.push('/');
-        }
+        this.$router.push('/');
       },
       showTodoList() {
         this.$router.push('todos');
