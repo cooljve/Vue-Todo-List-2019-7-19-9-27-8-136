@@ -7,19 +7,22 @@
       <a-card-meta
         :title=name
         :description=phoneNumber>
-        <a-avatar slot="avatar" src="../assets/logo.png"/>
+        <a-avatar slot="avatar" :src=url />
       </a-card-meta>
     </a-card>
   </div>
 </template>
 
 <script>
+  import pic from '../assets/logo.png'
+
   export default {
     name: "Profile",
     data() {
       return {
         name: 'Joi Liu',
-        phoneNumber: '12312312323'
+        phoneNumber: '12312312323',
+        url: pic,
       }
     }
   }
